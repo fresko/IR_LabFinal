@@ -7,7 +7,7 @@ el usuario puede realizar una consulta por medio de una palabra clave
 el sistema debe  listar los txt que continen esta palabra los cuales se pueden seleccionar
 y ver su contenido y marcar los relevantes
 
-![Minion](https://github.com/fresko/IR_lab1/blob/master/img/lucene.png)
+![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/lucene.png)
 
 ## Desarrollo del Laboratorio 
 
@@ -48,18 +48,10 @@ El SRI :
 
 
  
-
-**Respuesta por consola**
-
-
-```
-run:
- | rï¿½o | Danubio | Viena | color | azul | caudal | Invierno | Rhin | navegable
-1 1 1 1 1 0 0 0 0 
-1 0 0 0 0 1 1 0 0 
-2 1 0 0 0 1 0 1 0 
-1 0 0 0 0 1 0 0 1 
-Realiza una Pregunta :
-
-
-```
+## Presentación web
+![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/1.png)
+![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/2.png)
+![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/3.png)
+![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/4.png)
+![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/5.png)
+![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/6.png)
