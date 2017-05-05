@@ -49,9 +49,10 @@ El SRI :
 
  
 ## Presentación web
-![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/1.png)
-![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/2.png)
-![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/3.png)
-![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/4.png)
-![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/5.png)
-![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/6.png)
+
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/1.jpg)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/2.png)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/3.png)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/4.png)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/5.png)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/6.jpeg)
