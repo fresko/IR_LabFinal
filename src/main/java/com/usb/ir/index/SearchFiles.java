@@ -123,7 +123,7 @@ public class SearchFiles {
       ArrayList<Document> documents = new ArrayList<Document>();
       
       for (int i = 0; i < hits.length; i++) {
-    	  documents.add(searcher.doc(hits[0].doc));
+    	  documents.add(searcher.doc(hits[i].doc));
 	  }
       
       return documents;
