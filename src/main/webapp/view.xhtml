@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<f:view>	
+	
+<h:head>
+	<title>IR Reuters</title>
+</h:head>
+
+<h:body>
+
+<p:ajaxStatus onstart="PF('statusDialog').show()"
+	onsuccess="PF('statusDialog').hide()" />
+<p:dialog modal="true" widgetVar="statusDialog" header="Loading"
+	draggable="false" closable="false">
+	<p:graphicImage
+		value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.request.contextPath}/images/ajaxloadingbar.gif" />
+</p:dialog>
+
+<h:form id="form">
+
+	<p:growl id="growl" life="2000" />
+
+    <p:commandButton value="Indexar" id="index" update="growl" actionListener="#{dtPaginatorView.buttonActionIndexar}" styleClass="ui-priority-primary" />
+    
+    
+		<p:inputText id="txtPalabras" disabled="false"
+			binding="#{dtPaginatorView.txtPalabras}"
+			placeholder="Palabras claves" size="23">
+		</p:inputText>
+		
+		<p:commandButton value="Buscar" id="buscar" update="growl,tablaDocs" actionListener="#{dtPaginatorView.buttonActionBuscar}" styleClass="ui-priority-primary" />
+		
+    <p:outputLabel />
+    
+    <p:dataTable var="doc" id="tablaDocs" value="#{dtPaginatorView.docs}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+        <p:column headerText="Id">
+            <h:outputText value="#{doc.id}" />
+        </p:column>
+ 
+        <p:column headerText="Titulo">
+            <h:outputText value="#{doc.titulo}" />
+        </p:column>
+ 
+        <p:column headerText="Path">
+            <h:outputText value="#{doc.path}" />
+        </p:column>
+ 		
+        <p:column style="width:32px;text-align: center">
+             <p:commandButton update=":form:docDetail" oncomplete="PF('docDialog').show()" icon="ui-icon-search" title="View">
+                <f:setPropertyActionListener value="#{doc}" target="#{dtPaginatorView.selectedDoc}" />
+            </p:commandButton>
+        </p:column>
+        
+        
+    </p:dataTable>
+    
+    <p:dialog header="Doc Info" widgetVar="docDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="docDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty dtPaginatorView.selectedDoc}" columnClasses="label,value">
+                
+ 				<f:facet name="header">                
+                <h:outputText value="#{dtPaginatorView.selectedDoc.id}" />
+                </f:facet>
+ 
+                <h:outputText value="Titulo" />
+                <h:outputText value="#{dtPaginatorView.selectedDoc.titulo}" />
+  
+                <h:outputText value="Path" />
+                <h:outputText value="#{dtPaginatorView.selectedDoc.path}" />
+                
+                <h:outputText value="Contenido" />
+                <h:outputText value="#{dtPaginatorView.selectedDoc.contenido}" />
+                
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+    
+</h:form>
+
+
+</h:body>
+</f:view>
+</html>

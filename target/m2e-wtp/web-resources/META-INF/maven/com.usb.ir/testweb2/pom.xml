@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.usb.ir</groupId>
-  <artifactId>IRReuters</artifactId>
+  <artifactId>testweb2</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>IRSystem Maven Webapp</name>
+  <name>testweb2 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -15,12 +15,20 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-	    <groupId>org.glassfish</groupId>
-	    <artifactId>javax.faces</artifactId>
-	    <version>2.2.7</version>
+    <!-- Servlet -->
+	
+	<dependency>
+	    <groupId>javax.servlet.jsp</groupId>
+	    <artifactId>jsp-api</artifactId>
+	    <version>2.1.2</version>
+	    <scope>provided</scope>
 	</dependency>
-    
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
+	
 	<dependency>
 		<groupId>org.primefaces</groupId>
 		<artifactId>primefaces</artifactId>
@@ -35,25 +43,13 @@
 	</dependency>
 	
 	<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>servlet-api</artifactId>
-    <version>2.5</version>
-</dependency>
-
-<dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-core</artifactId>
-        <version>6.5.1</version>
-     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-benchmark -->
-     <dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-benchmark</artifactId>
-        <version>6.5.1</version>
-      </dependency>
+	    <groupId>javax.faces</groupId>
+	    <artifactId>jsf-api</artifactId>
+	    <version>2.0</version>
+	</dependency>
     
   </dependencies>
   <build>
-    <finalName>IRSystem</finalName>
+    <finalName>testweb2</finalName>
   </build>
 </project>

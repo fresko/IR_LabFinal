@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.usb.ir.main;
+package com.usb.ir.test;
 
-import com.usb.ir.index.IndexFiles;
-import ir.SearchFiles;
+import com.usb.ir.logic.IndexFiles;
+import com.usb.ir.logic.SearchFiles;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -33,7 +33,6 @@ public class Ppal {
      */ 
     public static void main(String[] args) {
          try {
-             
              Path psgm = Paths.get(DIR_SGM);
              Path ptxt = Paths.get(DIR_TXT);
              IndexFiles ind = new IndexFiles();
