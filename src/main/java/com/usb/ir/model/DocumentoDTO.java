@@ -6,6 +6,9 @@ public class DocumentoDTO {
 	public String titulo;
 	public String path;
 	public String contenido;
+	public float score;
+	String relevante;
+	
 	public String getId() {
 		return id;
 	}
@@ -30,7 +33,17 @@ public class DocumentoDTO {
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
 	}
-	
-	
-
+	public float getScore() {
+		return score;
+	}
+	public void setScore(float score) {
+		this.score = score;
+	}
+	public String getRelevante() {
+		return relevante;
+	}
+	public void setRelevante(String relevante) {
+		this.relevante = relevante;
+	}
+		
 }

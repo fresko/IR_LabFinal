@@ -9,24 +9,19 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.lucene.benchmark.utils.ExtractReuters;
 import org.apache.lucene.document.Document;
 import org.primefaces.component.inputtext.InputText;
-import org.primefaces.event.SelectEvent;
-import org.primefaces.event.UnselectEvent;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import com.usb.ir.logic.IndexFiles;
 import com.usb.ir.logic.SearchFiles;
-import com.usb.ir.model.Car;
 import com.usb.ir.model.DocumentoDTO;
 
 import utilidades.Utility; 
-;
  
 @ManagedBean(name="dtPaginatorView")
 @ViewScoped
@@ -41,6 +36,10 @@ public class PaginatorView implements Serializable {
     
     private DocumentoDTO selectedDoc;
     private List<DocumentoDTO> selectedDocs;
+    
+    private String relevante = "";
+    
+    Utility utility = new Utility();
  
     @PostConstruct
     public void init() {
@@ -110,7 +109,7 @@ public class PaginatorView implements Serializable {
 		SearchFiles sf = new SearchFiles();
 		
 		String[] paramSearch = new String[2];
-        List<Document> lstDoc = new ArrayList<>();
+        List<DocumentoDTO> lstDoc = new ArrayList<>();
 		
 		paramSearch[0] = "-query";                 
         paramSearch[1] = palabras;
@@ -121,21 +120,34 @@ public class PaginatorView implements Serializable {
 	        FacesContext.getCurrentInstance().addMessage(null, message);
 		}
         
-        Utility utility = new Utility();
-        
         docs = new ArrayList<DocumentoDTO>();
         
-        for (Document document : lstDoc) {
+        for (DocumentoDTO document : lstDoc) {
         	
         	DocumentoDTO doc = new DocumentoDTO();
-        	doc.setPath(document.get("path"));
-        	doc.setTitulo(document.get("title"));
-        	doc.setContenido(utility.obtenerContenidoArchivo(doc.getPath()));
+        	doc.setPath(document.getPath());
+        	doc.setScore(document.getScore());
+        	doc.setTitulo(utility.obtenerTituloArchivo(document.getPath()));
+        	doc.setContenido(utility.obtenerContenidoArchivo(document.getPath()));
         	docs.add(doc);
         	
-          System.out.println( "Doc" + document.get("contents") +" Path :" + document.get("path"));
+          System.out.println( "Doc" + doc.getTitulo() +" Path :" + doc.getPath());
         }
 		
 	}
+	
+	public void changeListener(String ruta){
+	    System.out.println(relevante+" "+ruta);
+	}
+
+	public String getRelevante() {
+		return relevante;
+	}
+
+	public void setRelevante(String relevante) {
+		this.relevante = relevante;
+	}
+	
+	
 
 }
