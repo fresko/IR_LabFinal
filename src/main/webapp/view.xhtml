@@ -42,9 +42,20 @@
     <p:dataTable var="doc" id="tablaDocs" value="#{dtPaginatorView.docs}" rows="10"
                          paginator="true"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
-        <p:column headerText="Id">
-            <h:outputText value="#{doc.id}" />
+                         rowsPerPageTemplate="5,10,15,21">
+        
+        <p:column headerText="Relevante">
+        
+	        <p:selectOneRadio id="console" value="#{doc.relevante}">
+	            <f:selectItem itemLabel="Si" itemValue="si" />
+	            <f:selectItem itemLabel="No" itemValue="no" />
+	            <p:ajax event="change" listener="#{dtPaginatorView.changeListener(doc.path)}"/>	            	            
+	        </p:selectOneRadio>
+        	
+        </p:column>
+        
+        <p:column headerText="Score">
+            <h:outputText value="#{doc.score}" />
         </p:column>
  
         <p:column headerText="Titulo">
