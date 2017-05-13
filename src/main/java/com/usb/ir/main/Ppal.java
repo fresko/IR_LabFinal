@@ -6,7 +6,7 @@
 package com.usb.ir.main;
 
 import com.usb.ir.index.IndexFiles;
-import ir.SearchFiles;
+import com.usb.ir.index.SearchFiles;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;

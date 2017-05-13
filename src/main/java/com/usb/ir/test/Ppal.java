@@ -51,7 +51,7 @@ public class Ppal {
                  String q = in.nextLine();
                  paramSearch[0] = "-query";                 
                  paramSearch[1] = q;
-                 lstDoc = sf.search(paramSearch);
+                 //lstDoc = sf.search(paramSearch);
                  
                  for (Document document : lstDoc) {
                    System.out.println( "Doc" + document.get("contents") +" Path :" + document.get("path"));
