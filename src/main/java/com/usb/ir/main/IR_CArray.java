@@ -30,6 +30,7 @@ public class IR_CArray {
     public static void main(String[] args) {
         try {
             IR_CArray fileCa = new IR_CArray();
+            //se convierte archivo Carray a matrix en memoria
             fileCa.FileToMatrix(DIR_CA, " ").forEach(System.out::println);
 
         } catch (IOException ex) {
@@ -85,6 +86,26 @@ public class IR_CArray {
 
         return lstCA;
 
+    }
+    
+    /**
+     * Metodo que calcula el centroide del cluster
+     * @param mi  cantidad de veces que se repeti el cluster en el grupo ca (fila de ca)
+     * @param sumhit sumatorias del peso de cluster en el grupo ca (fila de ca)
+     * @return 
+     */
+    public double centroid(int mi,double sumhit){
+        return !(mi == 0)? 1/mi * sumhit : 0;
+    }
+    
+    /**
+     * Metodo que calcula el la distancia 
+     * @param centroid 
+     * @param cluster cluster del ca
+     * @return 
+     */
+    public double dist(double centroid,int cluster){
+      return  Math.sqrt(Math.pow(2, centroid) + Math.pow(2,cluster));
     }
 
 }
