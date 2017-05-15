@@ -44,14 +44,12 @@ El SRI :
 + Paso 5:Realizar consulta con lucene y Listar los archivos
 + Paso 6:Seleccionar y Mostrar contenido de archivo txt  
 + Paso 7:Realizar marca si es relevantes  
-
-
  
 ## Presentación web
 
 ![Minion](https://github.com/fresko/IR_LabFinal/blob/web/img/1.png)
 
-![lucene](IR_LabFinal/img/2.png)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/2.png)
 
 ![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/3.png)
 
