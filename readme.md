@@ -59,4 +59,4 @@ Frontend
 
 ![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/5.png)
 
-![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/6.jpeg)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/6.png)
