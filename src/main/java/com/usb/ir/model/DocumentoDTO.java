@@ -7,7 +7,17 @@ public class DocumentoDTO {
 	public String path;
 	public String contenido;
 	public float score;
+	public String fecha;
 	String relevante;
+	
+	public DocumentoDTO(String titulo, String path) {
+		this.path = path;
+		this.titulo = titulo;
+	}
+	
+	public DocumentoDTO() {
+		
+	}
 	
 	public String getId() {
 		return id;
@@ -45,5 +55,12 @@ public class DocumentoDTO {
 	public void setRelevante(String relevante) {
 		this.relevante = relevante;
 	}
+	public String getFecha() {
+		return fecha;
+	}
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	
 		
 }
