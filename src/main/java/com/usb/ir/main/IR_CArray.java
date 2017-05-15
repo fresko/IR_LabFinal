@@ -37,12 +37,11 @@ public class IR_CArray {
             //se convierte archivo Carray a matrix en memoria
             //fileCa.FileToMatrix(DIR_CA, " ").forEach(System.out::println);
             //se genera la matrix de distancias 
-            fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "), lstDoc).forEach(System.out::println);
+           // fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "), lstDoc).forEach(System.out::println);
             // mejor grupo
-            //  int idex = getBestGroup(fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "),lstDoc));
-            //  char[] vecBest  = fileCa.FileToMatrix(DIR_CA, " ").get(idex);
-
-            //System.out.print(vecBest.toString());
+            int index = getBestGroup(fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "),lstDoc));
+            char[] vecBest  = fileCa.FileToMatrix(DIR_CA, " ").get(index);
+            Arrays.asList(vecBest).forEach(System.out::println);
         } catch (IOException ex) {
             Logger.getLogger(IR_CArray.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -134,9 +133,8 @@ public class IR_CArray {
      */
     public List<double[]> maztrixDist(List<char[]> lstCa, List<DocumentoDTO> lstDoc) {
         char[] vectCluster = {'0', '1', '2', '3', '4'}; //es necesario no sacarlo de la lista (para deuda tecnica)
-        //double[] vectScore = {20, 30, 40, 50, 10, 15, 16, 17, 31, 40, 11, 12, 13, 14, 22, 23, 24, 25, 19, 32, 33}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
-         double[] vectScore = {2, 4, 1}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
-        //double[] vectScore = {20, 30, 40, 50, 10, 15, 16, 17, 31, 40}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
+        double[] vectScore = {20, 30, 40, 50, 10, 15, 16, 17, 31, 40, 11, 12, 13, 14, 22, 23, 24, 25, 19, 32, 33}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
+        //double[] vectScore = {2, 4, 1}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
         //double[] vectScore = getScores(lstDoc);
         List<double[]> maztrixDist = new ArrayList<double[]>();
 
