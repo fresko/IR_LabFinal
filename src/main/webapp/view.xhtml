@@ -27,7 +27,7 @@
 
 	<p:growl id="growl" life="2000" />
 
-    <p:commandButton value="Indexar" id="index" update="growl" actionListener="#{dtPaginatorView.buttonActionIndexar}" styleClass="ui-priority-primary" />
+    <p:commandButton value="Indexar" id="index" update="growl,panelResultados" actionListener="#{dtPaginatorView.buttonActionIndexar}" styleClass="ui-priority-primary" />
     
     
 		<p:inputText id="txtPalabras" disabled="false"
@@ -35,56 +35,125 @@
 			placeholder="Palabras claves" size="23">
 		</p:inputText>
 		
-		<p:commandButton value="Buscar" id="buscar" update="growl,tablaDocs" actionListener="#{dtPaginatorView.buttonActionBuscar}" styleClass="ui-priority-primary" />
+		<h:outputText value=" Frase " />
+        <p:selectBooleanCheckbox value="#{dtPaginatorView.valueFrase}" />
+        
+        <h:outputText value="  " />
 		
-    <p:outputLabel />
+		<p:commandButton value="Buscar" id="buscar" update="growl,panelResultados" actionListener="#{dtPaginatorView.buttonActionBuscar}" styleClass="ui-priority-primary" />
+		
+    <h3 style="margin-top:0"></h3>
     
-    <p:dataTable var="doc" id="tablaDocs" value="#{dtPaginatorView.docs}" rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15">
-        <p:column headerText="Id">
-            <h:outputText value="#{doc.id}" />
-        </p:column>
- 
-        <p:column headerText="Titulo">
-            <h:outputText value="#{doc.titulo}" />
-        </p:column>
- 
-        <p:column headerText="Path">
-            <h:outputText value="#{doc.path}" />
-        </p:column>
- 		
-        <p:column style="width:32px;text-align: center">
-             <p:commandButton update=":form:docDetail" oncomplete="PF('docDialog').show()" icon="ui-icon-search" title="View">
-                <f:setPropertyActionListener value="#{doc}" target="#{dtPaginatorView.selectedDoc}" />
-            </p:commandButton>
-        </p:column>
+    <h3 style="margin-top:0">Resultados:</h3>
+    
+    <p:tabView id="panelResultados">
+        <p:tab title="Tabla paginada">
         
+	        <p:dataTable var="doc" id="tablaDocs" value="#{dtPaginatorView.docs}" rows="10"
+	                         paginator="true"
+	                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	                         rowsPerPageTemplate="5,10,15,21">
+	        
+		        <p:column headerText="Relevante">
+		        
+			        <p:selectOneRadio id="radioRelevate" value="#{doc.relevante}" binding="#{dtPaginatorView.radioRelevante}">
+			            <f:selectItem itemLabel="Si" itemValue="+" />
+			            <f:selectItem itemLabel="No" itemValue="-" />
+			            <p:ajax event="change" listener="#{dtPaginatorView.changeListener(doc)}"/>	            	            
+			        </p:selectOneRadio>
+		        	
+		        </p:column>
+		        
+		        <p:column headerText="Score">
+		            <h:outputText value="#{doc.score}" />
+		        </p:column>
+		 
+		        <p:column headerText="Titulo">
+		            <h:outputText value="#{doc.titulo}" />
+		        </p:column>
+		 
+		        <p:column headerText="Path">
+		            <h:outputText value="#{doc.path}" />
+		        </p:column>
+		 		
+		        <p:column style="width:32px;text-align: center">
+		             <p:commandButton update=":form:panelResultados:docDetail" oncomplete="PF('docDialog').show()" icon="ui-icon-search" title="View">
+		                <f:setPropertyActionListener value="#{doc}" target="#{dtPaginatorView.selectedDoc}" />
+		            </p:commandButton>
+		        </p:column>
+		        
+		        
+		    </p:dataTable>
+		    
+		    <p:dialog header="Doc Info" widgetVar="docDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+		        <p:outputPanel id="docDetail" style="text-align:center;">
+		            <p:panelGrid  columns="2" rendered="#{not empty dtPaginatorView.selectedDoc}" columnClasses="label,value">
+		                
+		 				<f:facet name="header">                
+		                <h:outputText value="#{dtPaginatorView.selectedDoc.id}" />
+		                </f:facet>
+		 
+		                <h:outputText value="Titulo" />
+		                <h:outputText value="#{dtPaginatorView.selectedDoc.titulo}" />
+		  
+		                <h:outputText value="Path" />
+		                <h:outputText value="#{dtPaginatorView.selectedDoc.path}" />
+		                
+		                <h:outputText value="Contenido" />
+		                <h:outputText value="#{dtPaginatorView.selectedDoc.contenido}" />
+		                
+		            </p:panelGrid>
+		        </p:outputPanel>
+		    </p:dialog>
+		    
+        </p:tab>
+        <p:tab title="Tabla con Clusters">
         
-    </p:dataTable>
-    
-    <p:dialog header="Doc Info" widgetVar="docDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-        <p:outputPanel id="docDetail" style="text-align:center;">
-            <p:panelGrid  columns="2" rendered="#{not empty dtPaginatorView.selectedDoc}" columnClasses="label,value">
-                
- 				<f:facet name="header">                
-                <h:outputText value="#{dtPaginatorView.selectedDoc.id}" />
-                </f:facet>
- 
-                <h:outputText value="Titulo" />
-                <h:outputText value="#{dtPaginatorView.selectedDoc.titulo}" />
-  
-                <h:outputText value="Path" />
-                <h:outputText value="#{dtPaginatorView.selectedDoc.path}" />
-                
-                <h:outputText value="Contenido" />
-                <h:outputText value="#{dtPaginatorView.selectedDoc.contenido}" />
-                
-            </p:panelGrid>
-        </p:outputPanel>
-    </p:dialog>
-    
+        	<p:treeTable value="#{dtPaginatorView.root}" var="document">
+		        
+		        <p:column headerText="Título">
+		            <h:outputText value="#{document.titulo}" />
+		        </p:column>
+		        <p:column headerText="Path">
+		            <h:outputText value="#{document.path}" />
+		        </p:column>
+		        
+		        <p:column style="width:24px">
+		            <p:commandButton update=":form:panelResultados:docDetail2" oncomplete="PF('docDialog2').show()" icon="ui-icon-search" title="View">
+		                <f:setPropertyActionListener value="#{document}" target="#{dtPaginatorView.selectedDoc2}" />
+		            </p:commandButton>
+		        </p:column>
+		    </p:treeTable>
+		    
+		    <p:dialog header="Doc Info" widgetVar="docDialog2" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+		        <p:outputPanel id="docDetail2" style="text-align:center;">
+		            <p:panelGrid  columns="2" rendered="#{not empty dtPaginatorView.selectedDoc2}" columnClasses="label,value">
+		                
+		 				<f:facet name="header">                
+		                <h:outputText value="#{dtPaginatorView.selectedDoc2.id}" />
+		                </f:facet>
+		 
+		                <h:outputText value="Titulo" />
+		                <h:outputText value="#{dtPaginatorView.selectedDoc2.titulo}" />
+		  
+		                <h:outputText value="Path" />
+		                <h:outputText value="#{dtPaginatorView.selectedDoc2.path}" />
+		                
+		                <h:outputText value="Contenido" />
+		                <h:outputText value="#{dtPaginatorView.selectedDoc2.contenido}" />
+		                
+		            </p:panelGrid>
+		        </p:outputPanel>
+		    </p:dialog>
+            
+        </p:tab>
+        <p:tab title="Índices de Evaluación">
+        
+        	<p:chart type="bar" model="#{dtPaginatorView.barModel}" style="height:300px"/>
+            
+        </p:tab>
+    </p:tabView>
+        
 </h:form>
 
 
