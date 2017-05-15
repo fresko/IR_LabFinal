@@ -21,6 +21,6 @@
         <groupId>org.apache.lucene</groupId>
         <artifactId>lucene-benchmark</artifactId>
         <version>6.5.1</version>
-      </dependency>
+      </dependency>      
    </dependencies>
 </project>

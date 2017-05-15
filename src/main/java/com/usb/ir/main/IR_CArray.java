@@ -41,6 +41,7 @@ public class IR_CArray {
             // mejor grupo
             int index = getBestGroup(fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "),lstDoc));
             char[] vecBest  = fileCa.FileToMatrix(DIR_CA, " ").get(index);
+            System.err.println("Index ("+ index + ")");
             Arrays.asList(vecBest).forEach(System.out::println);
         } catch (IOException ex) {
             Logger.getLogger(IR_CArray.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +107,7 @@ public class IR_CArray {
      * de ca)
      * @return
      */
-    static public double centroid(int mi, double sumhit) {
+     public static double centroid(int mi, double sumhit) {
         return (mi != 0) ? ((1.0 / mi * 1.0) * sumhit) : 0.0;
     }
 
@@ -117,7 +118,7 @@ public class IR_CArray {
      * @param cluster cluster del ca
      * @return
      */
-    static public double dist(double centroid, List<Double> lstScoreSeleted) {
+     public static double dist(double centroid, List<Double> lstScoreSeleted) {
         double dist = 0.0;
         for (Double score : lstScoreSeleted) {
             dist = dist + Math.sqrt(Math.pow(centroid,2)+ Math.pow(score.doubleValue(),2));
