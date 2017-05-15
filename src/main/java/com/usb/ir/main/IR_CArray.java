@@ -5,7 +5,9 @@
  */
 package com.usb.ir.main;
 
+import com.usb.ir.dto.DocumentoDTO;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -30,11 +32,17 @@ public class IR_CArray {
     public static void main(String[] args) {
         try {
             IR_CArray fileCa = new IR_CArray();
-            //se convierte archivo Carray a matrix en memoria
-            fileCa.FileToMatrix(DIR_CA, " ").forEach(System.out::println);
-            //se genera la matrix de distancias 
-            fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " ")).forEach(System.out::println);
+            List<DocumentoDTO> lstDoc = new ArrayList<DocumentoDTO>();
 
+            //se convierte archivo Carray a matrix en memoria
+            //fileCa.FileToMatrix(DIR_CA, " ").forEach(System.out::println);
+            //se genera la matrix de distancias 
+            fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "), lstDoc).forEach(System.out::println);
+            // mejor grupo
+            //  int idex = getBestGroup(fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "),lstDoc));
+            //  char[] vecBest  = fileCa.FileToMatrix(DIR_CA, " ").get(idex);
+
+            //System.out.print(vecBest.toString());
         } catch (IOException ex) {
             Logger.getLogger(IR_CArray.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -100,7 +108,7 @@ public class IR_CArray {
      * @return
      */
     static public double centroid(int mi, double sumhit) {
-        return !(mi == 0) ? 1 / mi * sumhit : 0;
+        return (mi != 0) ? ((1.0 / mi * 1.0) * sumhit) : 0.0;
     }
 
     /**
@@ -110,8 +118,12 @@ public class IR_CArray {
      * @param cluster cluster del ca
      * @return
      */
-    static public double dist(double centroid, int cluster) {
-        return Math.sqrt(Math.pow(2, centroid) + Math.pow(2, cluster));
+    static public double dist(double centroid, List<Double> lstScoreSeleted) {
+        double dist = 0.0;
+        for (Double score : lstScoreSeleted) {
+            dist = dist + Math.sqrt(Math.pow(centroid,2)+ Math.pow(score.doubleValue(),2));
+        }
+        return dist;
     }
 
     /**
@@ -120,34 +132,86 @@ public class IR_CArray {
      * @param lstCa
      * @return
      */
-    public List<double[]> maztrixDist(List<char[]> lstCa/*,List<Document> lstDoc*/) {
+    public List<double[]> maztrixDist(List<char[]> lstCa, List<DocumentoDTO> lstDoc) {
         char[] vectCluster = {'0', '1', '2', '3', '4'}; //es necesario no sacarlo de la lista (para deuda tecnica)
-        double[] vectPeso = {20, 30, 40, 50, 10, 15, 16, 17, 31, 40, 11, 12, 13, 14, 22, 23, 24, 25, 19, 32, 33}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
+        //double[] vectScore = {20, 30, 40, 50, 10, 15, 16, 17, 31, 40, 11, 12, 13, 14, 22, 23, 24, 25, 19, 32, 33}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
+         double[] vectScore = {2, 4, 1}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
+        //double[] vectScore = {20, 30, 40, 50, 10, 15, 16, 17, 31, 40}; //es necesario no sacarlo de los Documentos (para deuda tecnica)
+        //double[] vectScore = getScores(lstDoc);
         List<double[]> maztrixDist = new ArrayList<double[]>();
-        double[] vectDist = new double[vectPeso.length];
 
         for (int ca = 0; ca < lstCa.size(); ca++) {
             int indexDist = 0;
+            double[] vectDist = new double[vectCluster.length];
             for (int i = 0; i < vectCluster.length; i++) {
+                List<Double> lstScoreSeleted = new ArrayList<Double>();
                 int mi = 0;
-                double sumhit = 0;
-                for (int j = 0; j < lstCa.get(ca).length; j++) {
+                double sumhit = 0.0;                
+                for (int j = 0; j < /*lstCa.get(ca).length*/ vectScore.length; j++) {
                     if (vectCluster[i] == lstCa.get(ca)[j]) {
                         mi++;
-                        sumhit = sumhit + vectPeso[j];
+                        sumhit = sumhit + vectScore[j];
+                        lstScoreSeleted.add(Double.valueOf(vectScore[j]));
                     }
-                    if (j == lstCa.get(ca).length - 1) {
-                        vectDist[indexDist] = dist(centroid(mi, sumhit), vectCluster[i]);
-                        indexDist++;
+                    if (j == vectScore.length - 1) { // es la ultima posicion 
+                        vectDist[i] = dist(centroid(mi, sumhit), lstScoreSeleted); //calculos
+                       // indexDist++;
                     }
                 }
-                if (i == vectCluster.length - 1) {
+                if (i == vectCluster.length - 1) { // si es el ultimo
                     maztrixDist.add(ca, vectDist);
                 }
             }
 
         }
         return maztrixDist;
+    }
+
+    /**
+     * Metodo que obtine los score de los documentos
+     *
+     * @param lstDoc
+     * @return
+     */
+    public double[] getScores(List<DocumentoDTO> lstDoc) {
+        double[] vctScore = new double[lstDoc.size()];
+        for (int i = 0; i < lstDoc.size(); i++) {
+            DocumentoDTO doc = lstDoc.get(i);
+            vctScore[i] = Double.valueOf(doc.getScore());
+        }
+
+        return vctScore;
+    }
+
+    /**
+     * Metodo que retorna el indice ca del mejor grupo para documentos
+     * relevantes
+     *
+     * @param lstDist
+     * @return
+     */
+    public static int getBestGroup(List<double[]> lstDist) {
+        double sumLow = 0;
+        int index = 0;
+
+        for (int i = 0; i < lstDist.size(); i++) {
+            double[] dist = lstDist.get(i);
+            double sumDist = 0;
+
+            for (int j = 0; j < dist.length; j++) {
+                sumDist = sumDist + dist[j];
+
+            }
+            if (i == 0) {
+                sumLow = sumDist;
+            }
+            if (sumDist < sumLow) { // se actuliza la suma mas baja o mejor grupo
+                sumLow = sumDist;
+                index = i;
+            }
+        }
+
+        return index;
     }
 
 }
