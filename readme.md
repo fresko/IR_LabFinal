@@ -49,7 +49,7 @@ El SRI :
  
 ## Presentación web
 
-![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/1.jpg)
+![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/1.png)
 
 ![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/2.jpg)
 
