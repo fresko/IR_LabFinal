@@ -49,14 +49,14 @@ El SRI :
 
 Frontend
 
-![lucene](https://github.com/fresko/IR_LabFinal/raw/web/img/3.png)
+![lucene1](https://github.com/fresko/IR_LabFinal/raw/web/img/1.png)
 
-![lucene](https://github.com/fresko/IR_LabFinal/raw/web/img/3.png)
+![lucene2](https://github.com/fresko/IR_LabFinal/raw/web/img/2.png)
 
-![lucene](https://github.com/fresko/IR_LabFinal/raw/web/img/3.png)
+![lucene3](https://github.com/fresko/IR_LabFinal/raw/web/img/3.png)
 
-![lucene](https://github.com/fresko/IR_LabFinal/raw/web/img/4.png)
+![lucene4](https://github.com/fresko/IR_LabFinal/raw/web/img/4.png)
 
-![lucene](https://github.com/fresko/IR_LabFinal/raw/web/img/5.png)
+![lucene5](https://github.com/fresko/IR_LabFinal/raw/web/img/5.png)
 
-![lucene](https://github.com/fresko/IR_LabFinal/raw/web/img/6.jpeg)
+![lucene6](https://github.com/fresko/IR_LabFinal/raw/web/img/6.jpeg)
