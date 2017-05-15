@@ -51,7 +51,7 @@ El SRI :
 
 ![lucene](https://github.com/fresko/IR_LabFinal/img/1.png)
 
-![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/2.png)
+![lucene](IR_LabFinal/img/2.png)
 
 ![lucene](https://github.com/fresko/IR_LabFinal/blob/web/img/3.png)
 
