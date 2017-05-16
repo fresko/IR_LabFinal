@@ -15,24 +15,8 @@ Desarrollo en Java 8 utilizando API lucene 6.5 y Primefaces 6.1 , eclipse Neo 4.
 
 El SRI : 
 
--[x] Paso 0:Agregar dependencias **Lucene**
-   ```xml
-    //Dependencias Lucene
-    <dependencies>
-     <dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-core</artifactId>
-        <version>6.5.1</version>
-     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-benchmark -->
-     <dependency>
-        <groupId>org.apache.lucene</groupId>
-        <artifactId>lucene-benchmark</artifactId>
-        <version>6.5.1</version>
-      </dependency>
-   </dependencies>
- ```   
--[x] Paso 1:Leer Archivos reuters .gsm
--[x] Paso 2:Extraer contenido a Archivos Textos .txt 
++ Paso 0:Agregar dependencias **Lucene**  
++ Paso 1:Leer Archivos reuters .gsm
++ Paso 2:Extraer contenido a Archivos Textos .txt 
 
 
