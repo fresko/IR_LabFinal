@@ -119,15 +119,15 @@ Se agrega dependencia
 + Resultados agrupados en 5 Clusters
 + Gráficas de índices de evaluación (SSB, SSW, Silueta)
 
-![lucene1](https://github.com/fresko/IR_LabFinal/raw/web/img/1.png)
+![lucene1](https://github.com/fresko/IR_LabFinal/raw/web/img/11.png)
 
-![lucene2](https://github.com/fresko/IR_LabFinal/raw/web/img/2.png)
+![lucene2](https://github.com/fresko/IR_LabFinal/raw/web/img/22.png)
 
-![lucene3](https://github.com/fresko/IR_LabFinal/raw/web/img/3.png)
+![lucene3](https://github.com/fresko/IR_LabFinal/raw/web/img/33.png)
 
-![lucene4](https://github.com/fresko/IR_LabFinal/raw/web/img/4.png)
+![lucene4](https://github.com/fresko/IR_LabFinal/raw/web/img/44.png)
 
-![lucene5](https://github.com/fresko/IR_LabFinal/raw/web/img/5.png)
+![lucene5](https://github.com/fresko/IR_LabFinal/raw/web/img/55.png)
 
 ![lucene6](https://github.com/fresko/IR_LabFinal/raw/web/img/6.jpeg)
 
