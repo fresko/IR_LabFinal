@@ -11,7 +11,7 @@ y ver su contenido y marcar los relevantes
 
 ## Desarrollo del Laboratorio 
 
-Desarrollo en Java 8 utilizando API lucene 6.5 y Primefaces
+Desarrollo en Java 8 utilizando API lucene 6.5 y Primefaces 6.1 , eclipse Neo 4.6 
 
 El SRI : 
 
