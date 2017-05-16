@@ -212,5 +212,17 @@ public class IR_CArray {
 
         return index;
     }
-
+  
+    
+      //code to proo of concept : this a exmple comented
+      /*try (Stream<String> idsStream = Files.lines(idsFile.toPath(), StandardCharsets.US_ASCII)) {
+       Object[][] ids = idsStream
+       .map(String::trim)
+       .filter(s -> !s.isEmpty())
+       .map(Integer::valueOf)
+       .map(i -> new Integer[] { i })
+       .toArray(Object[][]::new);
+     } */ 
+    
+    
 }
