@@ -127,7 +127,7 @@ Se agrega dependencia
 
 ![lucene5](https://github.com/fresko/IR_LabFinal/raw/web/img/55.png)
 
-![lucene5](https://github.com/fresko/IR_LabFinal/raw/web/img/66.png)
+![lucene5](https://github.com/fresko/IR_LabFinal/raw/web/img/6.png)
 
 ![lucene4](https://github.com/fresko/IR_LabFinal/raw/web/img/44.png)
 
