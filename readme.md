@@ -20,3 +20,4 @@ El SRI :
 + Paso 2:Extraer contenido a Archivos Textos .txt 
 
 
+
