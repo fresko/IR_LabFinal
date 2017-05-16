@@ -1,4 +1,4 @@
-# Recuperacion de Información - Bucaqueda en Reuters
+# Recuperacion de Información - Busqueda en Reuters
 
 Este laboratorio se enfoca en realizar un sistema de recuperacion de Informacion **SRI**. 
 partiendo de archivos reuters .sgm los cuales es necesario extraer el texto en archios .txt
