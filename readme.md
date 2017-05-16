@@ -34,11 +34,11 @@ El SRI :
 ```   
 + Paso 1:Leer Archivos reuters .gsm
 + Paso 2:Extraer contenido a Archivos Textos .txt 
-   `` java    
+   ```java   
       Path psgm = Paths.get(DIR_SGM);
       Path ptxt = Paths.get(DIR_TXT);
       ExtractReuters extractor  = new ExtractReuters(psgm, ptxt);
-                 extractor.extract();  ```                
+                 extractor.extract();```                
 + Paso 3:Indexar con lucene
 + Paso 4:Realizar Consulta con Palabra Clave
 + Paso 5:Realizar consulta con lucene y Listar los archivos
