@@ -31,14 +31,8 @@ El SRI :
         <version>6.5.1</version>
       </dependency>
    </dependencies>
-```   
+ ```   
 + Paso 1:Leer Archivos reuters .gsm
 + Paso 2:Extraer contenido a Archivos Textos .txt 
 
-   ```java   
-      Path psgm = Paths.get(DIR_SGM);
-      Path ptxt = Paths.get(DIR_TXT);
-      ExtractReuters extractor  = new ExtractReuters(psgm, ptxt);
-      extractor.extract();```        
-                 
 
