@@ -219,7 +219,7 @@ public class PaginatorView implements Serializable {
  
         ChartSeries ssb = new ChartSeries();
         ssb.setLabel("SSB");
-        ssb.set("Índices", 120);        
+        ssb.set("Índices", 90);        
  
         ChartSeries ssw = new ChartSeries();
         ssw.setLabel("SSW");

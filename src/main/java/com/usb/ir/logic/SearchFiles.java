@@ -42,7 +42,7 @@ public class SearchFiles {
 	  int repeat = 0;
 	  boolean raw = false;
 	  String queryString = null;
-	  int hitsPerPage = 10; 
+	  int hitsPerPage = 21; 
 
 	  for(int i = 0;i < args.length;i++) {
 		  if ("-index".equals(args[i])) {
