@@ -6,11 +6,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
 
 import com.usb.ir.model.DocumentoDTO;
 
@@ -207,6 +211,140 @@ public class IR_CArray {
 
         return index;
     }
+    
+    public float calcularSSB(char[] vecBest, List<DocumentoDTO> docs) {
+    	
+    	float ssb = 0f;
+    	float promedioTotal = 0f;
+		
+		if(vecBest != null && docs.size() > 0) {
+			
+			ArrayList<DocumentoDTO> list0 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list1 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list2 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list3 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list4 = new ArrayList<DocumentoDTO>();
+			
+	        for (int i = 0; i < docs.size(); i++) {
+				char c = vecBest[i];
+				
+				promedioTotal += docs.get(i).score;
+												
+				switch (c) {
+					case '0':
+						list0.add(docs.get(i));
+						break;
+					case '1':
+						list1.add(docs.get(i));
+						break;
+					case '2':
+						list2.add(docs.get(i));
+						break;
+					case '3':
+						list3.add(docs.get(i));
+						break;
+					case '4':
+						list4.add(docs.get(i));
+						break;
+				}
+			}
+	        
+	        promedioTotal /= docs.size();
+	        
+	        ssb = calcularDistanciaSSB(list0, promedioTotal) +
+	        	calcularDistanciaSSB(list1, promedioTotal) +
+	        	calcularDistanciaSSB(list2, promedioTotal) +
+	        	calcularDistanciaSSB(list3, promedioTotal) +
+	        	calcularDistanciaSSB(list4, promedioTotal);
+			
+		}
+		
+		return ssb;
+    
+    }
+    
+    public float calcularSSW(char[] vecBest, List<DocumentoDTO> docs) {
+    	
+    	float ssw = 0f;
+		
+		if(vecBest != null && docs.size() > 0) {
+			
+			ArrayList<DocumentoDTO> list0 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list1 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list2 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list3 = new ArrayList<DocumentoDTO>();
+			ArrayList<DocumentoDTO> list4 = new ArrayList<DocumentoDTO>();
+			
+	        for (int i = 0; i < docs.size(); i++) {
+				char c = vecBest[i];
+												
+				switch (c) {
+					case '0':
+						list0.add(docs.get(i));
+						break;
+					case '1':
+						list1.add(docs.get(i));
+						break;
+					case '2':
+						list2.add(docs.get(i));
+						break;
+					case '3':
+						list3.add(docs.get(i));
+						break;
+					case '4':
+						list4.add(docs.get(i));
+						break;
+				}
+			}
+	        
+	        ssw = calcularDistanciaSSW(list0) +
+	        	calcularDistanciaSSW(list1) +
+	        	calcularDistanciaSSW(list2) +
+	        	calcularDistanciaSSW(list3) +
+	        	calcularDistanciaSSW(list4);
+			
+		}
+		
+		return ssw;
+	}
+    
+    public float calcularDistanciaSSW(ArrayList<DocumentoDTO> list) {
+    	
+    	float promedio = 0f;
+    	float distancia = 0f;
+    	
+    	for (DocumentoDTO documentoDTO : list) {
+			promedio += documentoDTO.getScore();
+		}
+    	
+    	promedio/=list.size();
+    	
+    	for (DocumentoDTO documentoDTO : list) {
+    		distancia += Math.pow((documentoDTO.getScore() - promedio),2);
+			
+		}
+    	
+    	return distancia;
+    	
+    }
+    
+    public float calcularDistanciaSSB(ArrayList<DocumentoDTO> list, float promedioTotal) {
+    	
+    	float promedio = 0f;
+    	float distancia = 0f;
+    	
+    	for (DocumentoDTO documentoDTO : list) {
+			promedio += documentoDTO.getScore();
+		}
+    	
+    	promedio/=list.size();
+    	
+    	distancia += list.size() * Math.pow((promedio - promedioTotal),2);		
+    	
+    	return distancia;
+    	
+    }
+
 
 }
 
