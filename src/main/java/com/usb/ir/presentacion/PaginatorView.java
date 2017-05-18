@@ -47,6 +47,7 @@ public class PaginatorView implements Serializable {
     private SelectOneRadio radioRelevante;
      
     private List<DocumentoDTO> docs;
+    private char[] vecBest;
     
     private DocumentoDTO selectedDoc;
     private DocumentoDTO selectedDoc2;
@@ -56,6 +57,7 @@ public class PaginatorView implements Serializable {
     private boolean valueFrase;
     
     Utility utility = new Utility();
+    IR_CArray fileCa = new IR_CArray();
     
     private HorizontalBarChartModel barModel;
     
@@ -214,16 +216,21 @@ public class PaginatorView implements Serializable {
         return barModel;
     }
 	
+	
+	/**
+	 * Grafica los indices de evalación SSW y SSB
+	 * @return
+	 */
 	private HorizontalBarChartModel initBarModel() {
 		HorizontalBarChartModel model = new HorizontalBarChartModel();
  
         ChartSeries ssb = new ChartSeries();
         ssb.setLabel("SSB");
-        ssb.set("Índices", 90);        
+        ssb.set("Índices", fileCa.calcularSSB(vecBest, docs));        
  
         ChartSeries ssw = new ChartSeries();
         ssw.setLabel("SSW");
-        ssw.set("Índices", 50);
+        ssw.set("Índices", fileCa.calcularSSW(vecBest, docs));
         
         ChartSeries silueta = new ChartSeries();
         silueta.setLabel("Silueta");
@@ -236,6 +243,7 @@ public class PaginatorView implements Serializable {
         return model;
     }
 	
+		
 	private void createBarModel() {
         barModel = initBarModel();
          
@@ -265,11 +273,10 @@ public class PaginatorView implements Serializable {
 		TreeNode cluster3 = new DefaultTreeNode(new DocumentoDTO("Cluster 3", ""), root);
 		TreeNode cluster4 = new DefaultTreeNode(new DocumentoDTO("Cluster 4", ""), root);
 		
-		IR_CArray fileCa = new IR_CArray();
         //List<DocumentoDTO> lstDoc = new ArrayList<DocumentoDTO>();
         
         int index = fileCa.getBestGroup(fileCa.maztrixDist(fileCa.FileToMatrix(DIR_CA, " "),docs));
-        char[] vecBest  = fileCa.FileToMatrix(DIR_CA, " ").get(index);
+        vecBest  = fileCa.FileToMatrix(DIR_CA, " ").get(index);
         Arrays.asList(vecBest).forEach(System.out::println);
         
         for (int i = 0; i < docs.size(); i++) {
